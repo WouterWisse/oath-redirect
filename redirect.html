@@ -20,6 +20,7 @@
             window.location.href = `${redirectUrl}?code=${code}`;
         } else {
             console.log('No code found');
+            document.getElementById('code-display').textContent = 'No code found';
         }
     </script>
 </body>
