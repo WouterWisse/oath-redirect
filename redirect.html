@@ -7,6 +7,7 @@
 <body>
     <h1>OAuth Redirect</h1>
     <p>If you see this page, the OAuth process has been successful.</p>
+    <p id="code-display"></p>
     <script>
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
@@ -15,9 +16,10 @@
 
         if (code) {
             console.log('Code:', code);
+            document.getElementById('code-display').textContent = `Code: ${code}`;
             window.location.href = `${redirectUrl}?code=${code}`;
         } else {
-            console.log('No access token found');
+            console.log('No code found');
         }
     </script>
 </body>
