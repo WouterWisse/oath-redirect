@@ -9,9 +9,9 @@
     <p>If you see this page, the OAuth process has been successful.</p>
     <p id="code-display"></p>
     <script>
-        const hash = window.location.hash.substring(1);
-        const params = new URLSearchParams(hash);
-        const code = params.get('code');
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const code = urlParams.get('code');
         const redirectUrl = 'acmeoftalent://instagram-auth';
 
         if (code) {
