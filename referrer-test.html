@@ -55,7 +55,7 @@
     
     <div class="form-group">
         <label for="referrer">Referrer URL</label>
-        <input type="text" id="referrer" placeholder="Enter desired referrer URL">
+        <input type="text" id="referrer" placeholder="Enter referrer URL">
     </div>
     
     <button onclick="handleRedirect()">Test Redirect</button>
@@ -80,17 +80,16 @@
                 return;
             }
 
-            // Create a link element to perform the redirect
-            const link = document.createElement('a');
-            link.href = redirectUrl;
-            
-            // Attempt to set referrer policy and referrer
-            if (referrer) {
-                link.setAttribute('referrerpolicy', 'unsafe-url');
+            if (!referrer) {
+                alert('Please enter a referrer URL');
+                return;
             }
+
+            // Add the referrer as a URL parameter
+            const finalUrl = `${redirectUrl}${redirectUrl.includes('?') ? '&' : '?'}referrer=${encodeURIComponent(referrer)}`;
             
-            // Perform the redirect
-            link.click();
+            // Redirect with the custom referrer
+            window.location.href = finalUrl;
         }
     </script>
 </body>
