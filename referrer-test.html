@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="referrer" content="unsafe-url">
     <title>Referrer Tester</title>
     <style>
         body {
@@ -121,11 +122,6 @@
         <input type="text" id="redirect-url" placeholder="Enter URL to redirect to (e.g., myapp://test)" autocomplete="off" autocapitalize="off">
     </div>
     
-    <div class="form-group">
-        <label for="referrer">Referrer URL</label>
-        <input type="text" id="referrer" placeholder="Enter referrer URL" autocomplete="off" autocapitalize="off">
-    </div>
-    
     <button onclick="handleRedirect()">Test Redirect</button>
 
     <div class="info-section">
@@ -141,23 +137,22 @@
 
         function handleRedirect() {
             const redirectUrl = document.getElementById('redirect-url').value;
-            const referrer = document.getElementById('referrer').value;
             
             if (!redirectUrl) {
                 alert('Please enter a destination URL');
                 return;
             }
 
-            if (!referrer) {
-                alert('Please enter a referrer URL');
-                return;
-            }
-
-            // Add the referrer as a URL parameter
-            const finalUrl = `${redirectUrl}${redirectUrl.includes('?') ? '&' : '?'}referrer=${encodeURIComponent(referrer)}`;
+            // Create a link and set referrer policy
+            const link = document.createElement('a');
+            link.href = redirectUrl;
+            link.rel = 'noreferrer';
+            link.setAttribute('referrerpolicy', 'unsafe-url');
             
-            // Redirect with the custom referrer
-            window.location.href = finalUrl;
+            // Perform the redirect
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
     </script>
 </body>
