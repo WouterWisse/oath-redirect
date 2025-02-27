@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Referrer Tester</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Referrer Tester</h1>
+    
+    <div class="form-group">
+        <label for="redirect-url">Destination URL</label>
+        <input type="text" id="redirect-url" placeholder="Enter URL to redirect to (e.g., myapp://test)">
+    </div>
+    
+    <div class="form-group">
+        <label for="referrer">Referrer URL</label>
+        <input type="text" id="referrer" placeholder="Enter desired referrer URL">
+    </div>
+    
+    <button onclick="handleRedirect()">Test Redirect</button>
+
+    <div class="info-section">
+        <h3>Current Request Info</h3>
+        <p id="current-url"></p>
+        <p id="current-referrer"></p>
+    </div>
+
+    <script>
+        // Display current page info
+        document.getElementById('current-url').textContent = `Current URL: ${window.location.href}`;
+        document.getElementById('current-referrer').textContent = `Current Referrer: ${document.referrer || 'None'}`;
+
+        function handleRedirect() {
+            const redirectUrl = document.getElementById('redirect-url').value;
+            const referrer = document.getElementById('referrer').value;
+            
+            if (!redirectUrl) {
+                alert('Please enter a destination URL');
+                return;
+            }
+
+            // Create a link element to perform the redirect
+            const link = document.createElement('a');
+            link.href = redirectUrl;
+            
+            // Attempt to set referrer policy and referrer
+            if (referrer) {
+                link.setAttribute('referrerpolicy', 'unsafe-url');
+            }
+            
+            // Perform the redirect
+            link.click();
+        }
+    </script>
+</body>
+</html> 
