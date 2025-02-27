@@ -119,7 +119,7 @@
     
     <div class="form-group">
         <label for="redirect-url">Destination URL</label>
-        <input type="text" id="redirect-url" placeholder="Enter URL to redirect to (e.g., myapp://test)" autocomplete="off" autocapitalize="off">
+        <!-- <input type="text" id="redirect-url" placeholder="Enter URL to redirect to (e.g., myapp://test)" autocomplete="off" autocapitalize="off"> -->
     </div>
     
     <button onclick="handleRedirect()">Test Redirect</button>
@@ -133,26 +133,28 @@
     <script>
         // Display current page info
         document.getElementById('current-url').textContent = `Current URL: ${window.location.href}`;
-        document.getElementById('current-referrer').textContent = `Current Referrer: ${document.referrer || 'None'}`;
+        // document.getElementById('current-referrer').textContent = `Current Referrer: ${document.referrer || 'None'}`;
 
         function handleRedirect() {
             const redirectUrl = document.getElementById('redirect-url').value;
+            // const referrer = document.getElementById('referrer').value;
             
             if (!redirectUrl) {
                 alert('Please enter a destination URL');
                 return;
             }
 
-            // Create a link and set referrer policy
+            // Create a link element to perform the redirect
             const link = document.createElement('a');
             link.href = redirectUrl;
-            link.rel = 'noreferrer';
-            link.setAttribute('referrerpolicy', 'unsafe-url');
+            
+            // Attempt to set referrer policy and referrer
+            // if (referrer) {
+            //     link.setAttribute('referrerpolicy', 'unsafe-url');
+            // }
             
             // Perform the redirect
-            document.body.appendChild(link);
             link.click();
-            document.body.removeChild(link);
         }
     </script>
 </body>
