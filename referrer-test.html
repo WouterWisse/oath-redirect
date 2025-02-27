@@ -2,46 +2,114 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Referrer Tester</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             max-width: 800px;
-            margin: 20px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f7;
         }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 24px;
+            color: #000000;
+        }
+        
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
+        
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1c1c1e;
         }
+        
         input[type="text"] {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
+            padding: 12px;
+            border: 1px solid #d1d1d6;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: #ffffff;
         }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+        }
+        
         button {
             background-color: #007AFF;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 14px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
             cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            margin-bottom: 20px;
         }
-        button:hover {
+        
+        button:active {
             background-color: #0056b3;
         }
+        
         .info-section {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 6px;
+            background-color: #ffffff;
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .info-section h3 {
+            font-size: 17px;
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: #1c1c1e;
+        }
+        
+        .info-section p {
+            margin: 8px 0;
+            font-size: 15px;
+            color: #3a3a3c;
+            word-break: break-all;
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+            
+            h1 {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+            
+            .form-group {
+                padding: 12px;
+            }
+            
+            input[type="text"] {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -50,12 +118,12 @@
     
     <div class="form-group">
         <label for="redirect-url">Destination URL</label>
-        <input type="text" id="redirect-url" placeholder="Enter URL to redirect to (e.g., myapp://test)">
+        <input type="text" id="redirect-url" placeholder="Enter URL to redirect to (e.g., myapp://test)" autocomplete="off" autocapitalize="off">
     </div>
     
     <div class="form-group">
         <label for="referrer">Referrer URL</label>
-        <input type="text" id="referrer" placeholder="Enter referrer URL">
+        <input type="text" id="referrer" placeholder="Enter referrer URL" autocomplete="off" autocapitalize="off">
     </div>
     
     <button onclick="handleRedirect()">Test Redirect</button>
